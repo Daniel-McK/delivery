@@ -14,6 +14,11 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // app code
 app.use(express.static('public-dist'));
 
+// fallback to root @HACK
+app.use(function(req, res){
+    res.sendFile(__dirname + '/public-dist/index.html');
+})
+
 // start the app
 app.listen(port);                     
 console.log('Running on port ' + port);     

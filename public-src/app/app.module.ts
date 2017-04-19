@@ -5,6 +5,7 @@ import { MaterialModule } from '@angular/material'
 
 import { AppRoutingModule } from './app.routing'
 import { AppComponent } from './app.component'
+import { HomeModule } from './home/home.module'
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component'
         FormsModule,
         MaterialModule.forRoot(),
 
-        AppRoutingModule
+        AppRoutingModule,
+        HomeModule
     ],
     declarations: [
         AppComponent
