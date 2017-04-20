@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$delivery-primary: mat-palette($mat-light-blue);
+$delivery-accent:  mat-palette($mat-deep-purple);
+$delivery-warn:    mat-palette($mat-deep-orange);
+
+$my-app-theme: mat-light-theme($delivery-primary, $delivery-accent, $delivery-warn);
+
+@include angular-material-theme($my-app-theme);

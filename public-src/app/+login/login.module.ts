@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core'
+import { MaterialModule } from '@angular/material'
 
 import { LoginRoutingModule } from './login.routing'
-import { LoginComponent }   from './login.component'
+import { LoginComponent } from './login.component'
 
 @NgModule({
   imports: [
-    LoginRoutingModule
+    LoginRoutingModule,
+    MaterialModule
   ],
   exports: [],
   declarations: [LoginComponent],
