@@ -22,7 +22,13 @@ export class DataService {
             .subscribe()
     }
 
-    get(url: string) {
+    verifyToken(){
+        return this.get('/api/authentication/verify-token')
+    }
+
+    // internal methods
+
+    private get(url: string) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
         return this.http.get(url, {
@@ -30,7 +36,7 @@ export class DataService {
         });
     }
 
-    post(url: string, data) {
+    private post(url: string, data) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
         return this.http.post(url, data, {
@@ -38,7 +44,7 @@ export class DataService {
         })
     }
 
-    createAuthorizationHeader(headers: Headers) {
+    private createAuthorizationHeader(headers: Headers) {
         var tokenObj = this.localStorage.get('token')
         if (tokenObj != null) {
             headers.append('token', tokenObj.toString())

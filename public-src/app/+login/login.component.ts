@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { DataService } from '../_common/data/data.service'
+import { AuthenticationService } from '../_common/security'
 
 @Component({
   selector: 'login',
@@ -7,13 +7,13 @@ import { DataService } from '../_common/data/data.service'
   styleUrls: ['login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private dataService : DataService) { }
+  constructor(private authService : AuthenticationService) { }
 
   email: string
   password: string
 
   login() {
-    this.dataService.login(this.email, this.password)
+    this.authService.login(this.email, this.password)
   }
 
   ngOnInit() { }

@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core'
+import { Component, ViewEncapsulation, OnInit } from '@angular/core'
+import { AuthenticationService } from './_common/security'
 
 @Component({
     selector: 'app',
@@ -9,5 +10,14 @@ import { Component, ViewEncapsulation } from '@angular/core'
     ],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+    constructor (private authenticationService : AuthenticationService){
+
+    }
+
+    ngOnInit(): void {
+        this.authenticationService.verifyToken()
+    }
+
+
 }
