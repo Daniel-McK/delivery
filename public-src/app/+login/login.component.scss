@@ -1,0 +1,22 @@
+#login-bg{
+    background: url(./imgs/pen-paper.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+
+    md-card#login-card{
+        width: 300px;
+        top: 5%;
+        left: calc(50% - 150px);
+
+        md-input-container {
+            width: 100%;
+        }
+
+    }
+
+}
+
