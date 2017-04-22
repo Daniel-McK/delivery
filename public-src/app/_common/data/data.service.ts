@@ -18,8 +18,8 @@ export class DataService {
                 if (body.success) {
                     this.localStorage.set('token', body.token)
                 }
+                return body
             })
-            .subscribe()
     }
 
     verifyToken(){

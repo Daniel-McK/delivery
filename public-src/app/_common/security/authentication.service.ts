@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 
 import { DataService } from '../data/data.service'
 import { AuthenticationState } from './authentication-state.class'
@@ -6,23 +7,27 @@ import { AuthenticationState } from './authentication-state.class'
 @Injectable()
 export class AuthenticationService {
 
-    constructor(private dataService: DataService) { 
+    constructor(private dataService: DataService, private router: Router) { 
         this.authenticationState = new AuthenticationState()
     }
 
     authenticationState: AuthenticationState
 
     verifyToken() {
-        this.dataService.verifyToken()
+        return this.dataService.verifyToken()
             .map(response => {
                 var body = response.json()
-                console.log(body)
                 if(body.success){
                     this.authenticationState.successfulLogin(body.user)
-                    console.log("logged in")
+                    console.log('[AuthService]: Token verification Succesful, updating login state')
                 }
+                else {
+                    this.router.navigateByUrl('/login')
+                    console.log('[AuthService]: Token verification failed, redirecting to login')
+                }
+                return body
             })
-            .subscribe();
+            .subscribe()
     }
 
     login(email: string, password: string){

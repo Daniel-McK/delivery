@@ -60,7 +60,7 @@ loginRouter.route('/verify-token')
         var token = req.headers['token'];
 
         if (!token) {
-            return res.status(401).send({
+            return res.send({
                 success: false,
                 message: 'No token provided'
             });
@@ -68,7 +68,7 @@ loginRouter.route('/verify-token')
 
         jwt.verify(token, db.secret, function (err, decoded) {
             if (err) {
-                res.status(401).json({ success: false, message: "Failed to authenticate token" });
+                res.json({ success: false, message: "Failed to authenticate token" });
                 return;
             }
 
