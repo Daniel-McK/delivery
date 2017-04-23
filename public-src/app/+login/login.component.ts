@@ -9,7 +9,7 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent implements OnInit {
   constructor(private authService: AuthenticationService, private router: Router) {
-    if (this.authService.authenticationState.status == AuthenticationStatus.Authenticated) {
+    if (this.authService.state.status == AuthenticationStatus.Authenticated) {
       this.router.navigateByUrl('/home')
     }
   }

@@ -8,17 +8,17 @@ import { AuthenticationState } from './authentication-state.class'
 export class AuthenticationService {
 
     constructor(private dataService: DataService, private router: Router) { 
-        this.authenticationState = new AuthenticationState()
+        this.state = new AuthenticationState()
     }
 
-    authenticationState: AuthenticationState
+    state: AuthenticationState
 
     verifyToken() {
         return this.dataService.verifyToken()
             .map(response => {
                 var body = response.json()
                 if(body.success){
-                    this.authenticationState.successfulLogin(body.user)
+                    this.state.successfulLogin(body.user)
                     console.log('[AuthService]: Token verification Succesful, updating login state')
                 }
                 else {
@@ -32,6 +32,10 @@ export class AuthenticationService {
 
     login(email: string, password: string){
         return this.dataService.login(email, password)
+    }
+
+    getCurrentUserId() {
+        return this.state.user.id
     }
 
 }

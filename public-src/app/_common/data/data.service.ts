@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage'
-import { Http, Headers } from '@angular/http'
+import { Http, Headers, URLSearchParams } from '@angular/http'
 
 @Injectable()
 export class DataService {
@@ -26,23 +26,24 @@ export class DataService {
         return this.get('/api/authentication/verify-token')
     }
 
-    // internal methods
-
-    private get(url: string) {
+    get(url: string, params: URLSearchParams = null) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
         return this.http.get(url, {
-            headers: headers
+            headers: headers,
+            params: params
         });
     }
 
-    private post(url: string, data) {
+    post(url: string, data) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
         return this.http.post(url, data, {
             headers: headers
         })
     }
+
+    // internal methods
 
     private createAuthorizationHeader(headers: Headers) {
         var tokenObj = this.localStorage.get('token')
