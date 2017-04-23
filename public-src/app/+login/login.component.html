@@ -1,20 +1,21 @@
-<div id="login-bg">
+<form id="login-bg" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
     <md-card id="login-card">
         <md-card-header>
             <md-card-title>Login to Delivery</md-card-title>
         </md-card-header>
         <md-card-content>
-            <form>
-                <md-input-container>
-                    <input mdInput [(ngModel)]="email" placeholder="Email" name="email" required/>
-                </md-input-container>
-                <md-input-container>
-                    <input mdInput [(ngModel)]="password" placeholder="Password" type="password" name="password" required />
-                </md-input-container>
-            </form>
+            <md-input-container>
+                <input formControlName="email" placeholder="Email" mdInput />
+            </md-input-container>
+            <md-input-container>
+                <input formControlName="password" placeholder="Password" type="password" mdInput />
+            </md-input-container>
+            <p *ngIf="serverError" class="error-text">
+                {{serverError}}
+            </p>
         </md-card-content>
         <md-card-actions>
-            <button md-raised-button (click)="login()">Login</button>
+            <button md-raised-button type="submit" [disabled]="loginForm.invalid">Login</button>
         </md-card-actions>
     </md-card>
-</div>
+</form>

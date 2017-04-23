@@ -12,12 +12,13 @@ import { AuthenticationService } from '../_common/security'
 })
 export class SemesterComponent implements OnInit {
 
-  constructor(private dataService: DataService, private authService: AuthenticationService, private router: Router) { }
+  constructor(private dataService: DataService, private authService: AuthenticationService, private router: Router) {
+    this.getSemester()
+  }
 
   semester: any
 
   ngOnInit() { 
-    this.getSemester()
   }
 
   private getSemester() {

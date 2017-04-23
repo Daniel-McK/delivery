@@ -26,6 +26,10 @@ export class DataService {
         return this.get('/api/authentication/verify-token')
     }
 
+    logout() {
+        this.localStorage.remove('token')
+    }
+
     get(url: string, params: URLSearchParams = null) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);

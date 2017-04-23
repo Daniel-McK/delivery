@@ -22,13 +22,13 @@ loginRouter.route('/login')
 
             // user exists
             if (!user) {
-                res.status(401).json({ success: false, message: 'Authentication failed.' });
+                res.json({ success: false, message: 'Authentication failed.' });
                 return;
             }
 
             //password matches
             if (!bcrypt.compareSync(password, user.password)) {
-                res.status(401).json({ success: false, message: "Authentication failed." });
+                res.json({ success: false, message: "Authentication failed." });
                 return;
             }
 

@@ -30,8 +30,13 @@ export class AuthenticationService {
             .subscribe()
     }
 
-    login(email: string, password: string){
+    login(email: string, password: string) {
         return this.dataService.login(email, password)
+    }
+
+    logout() {
+        this.dataService.logout()
+        this.state.reset()
     }
 
     getCurrentUserId() {
