@@ -1,0 +1,9 @@
+<h1 md-dialog-title>New Semester</h1>
+<div md-dialog-content>
+    <md-input-container>
+        <input mdInput placeholder="Name" [formControl]="nameControl" >
+    </md-input-container>
+</div>
+<div md-dialog-actions align="end">
+  <button md-raised-button (click)="createSemester()" [disabled]="!nameControl.valid">Create</button>
+</div>

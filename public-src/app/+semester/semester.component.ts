@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { URLSearchParams } from '@angular/http'
-import { Router } from '@angular/router'
+import { MdDialog } from '@angular/material'
 
 import { DataService } from '../_common/data'
 import { AuthenticationService } from '../_common/security'
+import { SemesterDialog } from './dialog/semester.dialog'
 
 @Component({
   selector: 'semester',
@@ -12,13 +13,16 @@ import { AuthenticationService } from '../_common/security'
 })
 export class SemesterComponent implements OnInit {
 
-  constructor(private dataService: DataService, private authService: AuthenticationService, private router: Router) {
+  constructor(
+    private dataService: DataService,
+    private authService: AuthenticationService,
+    private dialog: MdDialog) {
     this.getSemester()
   }
 
   semester: any
 
-  ngOnInit() { 
+  ngOnInit() {
   }
 
   private getSemester() {
@@ -27,15 +31,26 @@ export class SemesterComponent implements OnInit {
     // @TODO add url param for specific semester
     this.dataService.get('/api/semester', params)
       .map(response => {
-        var body = response.json() 
-        if(!body){
-          this.router.navigateByUrl('/home')
-          return
+        var body = response.json()
+        if (!body) {
+          this.openSemesterDialog()
         }
-        this.semester = body
+        else {
+          this.semester = body
+        }
       })
       .subscribe()
 
+  }
+
+  openSemesterDialog() {
+    var dialogRef = this.dialog.open(SemesterDialog)
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.semester = result
+        }
+      })
   }
 
 

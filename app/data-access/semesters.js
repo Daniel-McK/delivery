@@ -23,6 +23,19 @@ semesterRouter.route('')
             res.json(semester);
         });
     })
+    .post(function (req, res) {
+        var semester = new Semester();
+        semester.name = req.body.name;
+        semester.isCurrent = req.body.isCurrent;
+        semester.user = req.decoded._id;
+        semester.save(function (err) {
+            if (err) {
+                res.status(500).send(err);
+                return;
+            }
+            res.json(semester);
+        });
+    });
 
 semesterRouter.route('/:semesterId')
     .get(function (req, res) {
