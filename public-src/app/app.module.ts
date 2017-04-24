@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MaterialModule, MdInputModule, MdButtonModule } from '@angular/material'
+import { FlexLayoutModule } from '@angular/flex-layout'
 import { LocalStorageModule } from 'angular-2-local-storage'
 import { HttpModule } from '@angular/http'
 import { CommonModule} from '@angular/common'
@@ -20,6 +21,7 @@ import { AuthenticationService } from './_common/security'
         ReactiveFormsModule,
         HttpModule,
         CommonModule,
+        FlexLayoutModule,
         MaterialModule.forRoot(),
         MdInputModule, MdButtonModule,
         LocalStorageModule.withConfig({

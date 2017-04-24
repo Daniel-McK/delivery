@@ -15,11 +15,12 @@ semesterRouter.route('')
             return;
         }
 
-        Semester.findOne(searchParams, function (err, semester) {
+        Semester.findOne(searchParams).lean().exec(function (err, semester) {
             if (err) {
                 res.status(500).send(err);
                 return;
             }
+            semester.courses = [];
             res.json(semester);
         });
     })
@@ -39,7 +40,7 @@ semesterRouter.route('')
 
 semesterRouter.route('/:semesterId')
     .get(function (req, res) {
-        Semester.findById(req.params.semesterId, function (err, semester) {
+        Semester.findById(req.params.semesterId).lean().exec(function (err, semester) {
             if (err) {
                 res.status(500).send(err);
                 return;
