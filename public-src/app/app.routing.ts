@@ -7,7 +7,8 @@ const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'login', loadChildren: './+login/login.module#LoginModule' },
-    { path: 'semester', loadChildren: './+semester/semester.module#SemesterModule'}
+    { path: 'semester', loadChildren: './+semester/semester.module#SemesterModule'},
+    { path: 'course', loadChildren: './+course/course.module#CourseModule'}
 ];
 
 @NgModule({

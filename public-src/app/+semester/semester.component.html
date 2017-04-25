@@ -4,7 +4,7 @@
 <div fxLayoutAlign="center center" fxLayout="row">
     <md-card id="class-list-wrapper">
         <div *ngIf="semester">
-            <div *ngFor="let course of semester.courses">{{course.name}}</div>
+            <div *ngFor="let course of semester.courses" [routerLink]="['/course/' + course._id]">{{course.name}}</div>
         </div>
         <button md-raised-button (click)="openCourseDialog()">Create new course</button>
     </md-card>
