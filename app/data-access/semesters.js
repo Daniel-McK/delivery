@@ -1,12 +1,13 @@
 var express = require('express');
 var Semester = require('../models/semester');
+var Course = require('../models/course');
 
 var semesterRouter = new express.Router();
 
-semesterRouter.route('')
+semesterRouter.route('/default')
     .get(function (req, res) {
         var searchParams = {};
-        if(req.query.userId){
+        if (req.query.userId) {
             searchParams.user = req.query.userId;
             searchParams.isCurrent = true;
         }
@@ -20,8 +21,14 @@ semesterRouter.route('')
                 res.status(500).send(err);
                 return;
             }
-            semester.courses = [];
-            res.json(semester);
+            Course.find({ semester: semester._id }, function (err, courses) {
+                if (err) {
+                    res.status(500).send(err);
+                    return;
+                }
+                semester.courses = courses;
+                res.json(semester);
+            });
         });
     })
     .post(function (req, res) {

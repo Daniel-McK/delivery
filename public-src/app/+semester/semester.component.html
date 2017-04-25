@@ -3,6 +3,9 @@
 </md-toolbar>
 <div fxLayoutAlign="center center" fxLayout="row">
     <md-card id="class-list-wrapper">
-        a
+        <div *ngIf="semester">
+            <div *ngFor="let course of semester.courses">{{course.name}}</div>
+        </div>
+        <button md-raised-button (click)="openCourseDialog()">Create new course</button>
     </md-card>
 </div>

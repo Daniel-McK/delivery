@@ -4,7 +4,8 @@ import { MdDialog } from '@angular/material'
 
 import { DataService } from '../_common/data'
 import { AuthenticationService } from '../_common/security'
-import { SemesterDialog } from './dialog/semester.dialog'
+import { SemesterDialog } from './dialogs/semester.dialog'
+import { CourseDialog } from './dialogs/course.dialog'
 
 @Component({
   selector: 'semester',
@@ -29,7 +30,7 @@ export class SemesterComponent implements OnInit {
     var params = new URLSearchParams()
     params.set('userId', this.authService.getCurrentUserId())
     // @TODO add url param for specific semester
-    this.dataService.get('/api/semester', params)
+    this.dataService.get('/api/semester/default', params)
       .map(response => {
         var body = response.json()
         if (!body) {
@@ -53,5 +54,15 @@ export class SemesterComponent implements OnInit {
       })
   }
 
+  openCourseDialog() {
+    var dialogRef = this.dialog.open(CourseDialog)
+    dialogRef.componentInstance.semesterId = this.semester._id
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.semester.courses.push(result)
+        }
+      })
+  }
 
 }

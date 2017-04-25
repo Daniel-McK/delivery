@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { SemseterRoutingModule } from './semester.routing'
 import { SemesterComponent } from './semester.component'
 import { SemesterDialog } from './dialogs/semester.dialog'
+import { CourseDialog } from './dialogs/course.dialog'
 
 @NgModule({
   imports: [
@@ -19,10 +20,12 @@ import { SemesterDialog } from './dialogs/semester.dialog'
   exports: [],
   declarations: [
     SemesterComponent,
-    SemesterDialog
+    SemesterDialog,
+    CourseDialog
   ],
   entryComponents: [
-    SemesterDialog
+    SemesterDialog,
+    CourseDialog
   ],
   providers: []
 })

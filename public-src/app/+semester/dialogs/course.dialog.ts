@@ -6,25 +6,27 @@ import { DataService } from '../../_common/data'
 
 
 @Component({
-  selector: 'semester-dialog',
-  templateUrl: './semester.dialog.html',
+  selector: 'course-dialog',
+  templateUrl: './course.dialog.html',
 })
-export class SemesterDialog implements OnInit {
+export class CourseDialog implements OnInit {
 
 
-  constructor(public dialogRef: MdDialogRef<SemesterDialog>, private dataService: DataService) { }
+  constructor(public dialogRef: MdDialogRef<CourseDialog>, private dataService: DataService) { }
+
+  semesterId: any
 
   nameControl = new FormControl()
 
-  createSemester() {
+  createCourse() {
     if (!this.nameControl.valid) {
       return;
     }
     var postBody = {
       name: this.nameControl.value,
-      isCurrent: true
+      semester: this.semesterId
     }
-    this.dataService.post('/api/semester', postBody)
+    this.dataService.post('/api/course', postBody)
       .subscribe(response => {
         var body = response.json()
         this.dialogRef.close(body)
