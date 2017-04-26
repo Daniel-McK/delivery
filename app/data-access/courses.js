@@ -1,5 +1,6 @@
 var express = require('express');
 var Course = require('../models/course');
+var Deliverable = require('../models/deliverable');
 
 var courseRouter = new express.Router();
 
@@ -24,8 +25,14 @@ courseRouter.route('/:courseId')
                 res.status(500).send(err);
                 return;
             }
-            res.json(course);
-            return;
+            Deliverable.find({ course: course._id }, function (err, deliverables) {
+                if (err) {
+                    res.status(500).send(err);
+                    return;
+                }
+                course.deliverables = deliverables;
+                res.json(course);
+            });
         });
     })
 
