@@ -3,6 +3,9 @@
 </md-toolbar>
 <div fxLayoutAlign="center center" fxLayout="row">
     <md-card id="delvierable-list-wrapper">
-        course info
+        <div *ngIf="course">
+            <div *ngFor="let deliverable of course.deliverables">{{deliverable.name}}</div>
+        </div>
+        <button md-raised-button (click)="openDeliverableDialog()">Create new deliverable</button>
     </md-card>
 </div>

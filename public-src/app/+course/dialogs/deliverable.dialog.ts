@@ -14,6 +14,8 @@ export class DeliverableDialog implements OnInit {
 
   constructor(public dialogRef: MdDialogRef<DeliverableDialog>, private dataService: DataService, private formBuilder: FormBuilder) { }
 
+  courseId: any
+
   deliverableForm: FormGroup
 
   createCourse() {

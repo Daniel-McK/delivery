@@ -1,9 +1,15 @@
 <h1 md-dialog-title>New Deliverable</h1>
-<div md-dialog-content>
+<form md-dialog-content [formGroup]="deliverableForm">
     <md-input-container>
-        <input mdInput placeholder="Name" [formControl]="nameControl" >
+        <input mdInput placeholder="Name" formControlName="name" >
     </md-input-container>
-</div>
+    <md-input-container>
+        <input mdInput placeholder="Weight" formControlName="weight" type="number" >
+    </md-input-container>
+    <md-input-container>
+        <input mdInput placeholder="Due Date" formControlName="due" type="date" >
+    </md-input-container>
+</form>
 <div md-dialog-actions align="end">
-  <button md-raised-button (click)="ccreateDeliverable()" [disabled]="!nameControl.valid">Create</button>
+  <button md-raised-button (click)="createDeliverable()" [disabled]="!deliverableForm.valid">Create</button>
 </div>

@@ -17,7 +17,17 @@ export class CourseComponent implements OnInit {
         this.router.params.subscribe(params => {
             this.getCourse(params.courseId)
         })
+        this.dataService.get('/api/category')
+            .subscribe(response => {
+                var body = response.json()
+                if(body){
+                    this.categories = body;
+                    console.log(this.categories)
+                }
+            });
     }
+
+    categories: Array<any>
 
     course: any
 
@@ -30,7 +40,7 @@ export class CourseComponent implements OnInit {
         dialogRef.afterClosed()
             .subscribe(result => {
                 if (result) {
-                    this.course.semesters.push(result)
+                    this.course.deliverables.push(result)
                 }
             })
     }
@@ -38,12 +48,11 @@ export class CourseComponent implements OnInit {
     private getCourse(courseId) {
         console.log(courseId)
         this.dataService.get('/api/course/' + courseId)
-            .map(response => {
+            .subscribe(response => {
                 var body = response.json()
                 if (body) {
                     this.course = body
                 }
             })
-            .subscribe()
     }
 }
