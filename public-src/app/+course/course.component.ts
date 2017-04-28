@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import { MdDialog } from '@angular/material'
 
 import { DataService } from '../_common/data'
+import { DeliverableDialog } from './dialogs/deliverable.dialog'
 
 
 @Component({
@@ -11,7 +13,7 @@ import { DataService } from '../_common/data'
 })
 export class CourseComponent implements OnInit {
 
-    constructor(private dataService: DataService, private router: ActivatedRoute) {
+    constructor(private dataService: DataService, private router: ActivatedRoute, private dialog: MdDialog) {
         this.router.params.subscribe(params => {
             this.getCourse(params.courseId)
         })
@@ -20,6 +22,17 @@ export class CourseComponent implements OnInit {
     course: any
 
     ngOnInit() {
+    }
+
+    openDeliverableDialog() {
+        var dialogRef = this.dialog.open(DeliverableDialog)
+        dialogRef.componentInstance.courseId = this.course._id
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result) {
+                    this.course.semesters.push(result)
+                }
+            })
     }
 
     private getCourse(courseId) {
