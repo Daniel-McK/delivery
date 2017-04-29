@@ -22,7 +22,7 @@ export class DeliverableDialog implements OnInit {
     if (!this.deliverableForm.valid) {
       return;
     }
-    var postBody = this.deliverableForm
+    var postBody = this.deliverableForm.value
     this.dataService.post('/api/deliverable', postBody)
       .subscribe(response => {
         var body = response.json()
@@ -34,10 +34,10 @@ export class DeliverableDialog implements OnInit {
     this.deliverableForm = this.formBuilder.group({
       name: ['', Validators.required],
       isComplete: [false, Validators.required],
-      due: '',
+      due: null,
       mark: '',
       weight: [0, Validators.required],
-      category: '',
+      category: null,
       courseId: [this.courseId, Validators.required]
     })
   }
