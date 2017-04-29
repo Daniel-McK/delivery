@@ -13,12 +13,12 @@ export class DeliverableDialog implements OnInit {
 
 
   constructor(public dialogRef: MdDialogRef<DeliverableDialog>, private dataService: DataService, private formBuilder: FormBuilder) { }
-
-  courseId: any
+  
+  courseId: string
 
   deliverableForm: FormGroup
 
-  createCourse() {
+  createDeliverable() {
     if (!this.deliverableForm.valid) {
       return;
     }
@@ -38,7 +38,7 @@ export class DeliverableDialog implements OnInit {
       mark: '',
       weight: [0, Validators.required],
       category: '',
-      courseId: ['', Validators.required]
+      courseId: [this.courseId, Validators.required]
     })
   }
 
