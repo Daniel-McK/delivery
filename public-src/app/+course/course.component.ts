@@ -45,6 +45,13 @@ export class CourseComponent implements OnInit {
             })
     }
 
+    getDisplayValue(value: number){
+        if(typeof(value) === "undefined" || value == null){
+            return '-'
+        }
+        return value + '%'
+    }
+
     private getCourse(courseId) {
         console.log(courseId)
         this.dataService.get('/api/course/' + courseId)
