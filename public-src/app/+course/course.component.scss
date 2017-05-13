@@ -1,5 +1,18 @@
-#delvierable-list-wrapper {
+#deliverable-list-wrapper {
     max-width: 1000px;
     width: 100%;
+}
+#deliverable-list {
     padding: 0;
+}
+.tile {
+    background-color: white;
+    padding: 23px;
+    text-align: center;
+}
+#complete {
+    background-color: lightblue;
+}
+#grade {
+    background-color: lightgreen;
 }

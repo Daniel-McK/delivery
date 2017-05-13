@@ -1,25 +1,35 @@
 <md-toolbar color="primary">
     <div *ngIf="course">{{course.name}}</div>
 </md-toolbar>
-<div fxLayoutAlign="center center" fxLayout="row">
-    <md-card id="delvierable-list-wrapper">
-        <md-list *ngIf="course">
-            <md-list-item *ngFor="let deliverable of course.deliverables">
-                <div fxLayout="row" fxFlex>
-                    <div fxFlex>
-                        <div md-line>{{deliverable.name}}</div>
-                        <div md-line>{{deliverable.due | date}}</div>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div fxLayout="column" id="deliverable-list-wrapper">
+        <div fxLayout="row">
+            <div fxFlex class="tile" id="complete">
+                % Done
+            </div>
+            <div fxFlex class="tile" id="grade">
+                % Current Grade
+            </div>
+        </div>
+        <md-card id="deliverable-list">
+            <md-list *ngIf="course">
+                <md-list-item *ngFor="let deliverable of course.deliverables">
+                    <div fxLayout="row" fxFlex>
+                        <div fxFlex>
+                            <div md-line>{{deliverable.name}}</div>
+                            <div md-line>{{deliverable.due | date}}</div>
+                        </div>
+                        <div fxFlex>
+                            <div md-line>Mark: {{getDisplayValue(deliverable.mark)}}</div>
+                            <div md-line>Weight: {{getDisplayValue(deliverable.weight)}}</div>
+                        </div>
+                        <div>
+                            <md-checkbox>Complete</md-checkbox>
+                        </div>
                     </div>
-                    <div fxFlex>
-                        <div md-line>Mark: {{getDisplayValue(deliverable.mark)}}</div>
-                        <div md-line>Weight: {{getDisplayValue(deliverable.weight)}}</div>
-                    </div>
-                    <div>
-                        <md-checkbox>Complete</md-checkbox>
-                    </div>
-                </div>
-            </md-list-item>
-        </md-list>
-        <button md-raised-button (click)="openDeliverableDialog()">Create new deliverable</button>
-    </md-card>
+                </md-list-item>
+            </md-list>
+            <button md-raised-button (click)="openDeliverableDialog()">Create new deliverable</button>
+        </md-card>
+    </div>
 </div>
