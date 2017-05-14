@@ -16,4 +16,8 @@ router.use('/course', courseRouter);
 router.use('/deliverable', deliverableRouter);
 router.use('/category', categoryRouter);
 
+router.use(function(req, res){
+    res.status(404).json({success: false, message: 'No such API endpoint exists'});
+});
+
 module.exports = router;
