@@ -32,6 +32,12 @@ export class AuthenticationService {
 
     login(email: string, password: string) {
         return this.dataService.login(email, password)
+        .map(body => {
+            if(body.success){
+                this.state.successfulLogin(body.user)
+            }
+            return body
+        })
     }
 
     logout() {
