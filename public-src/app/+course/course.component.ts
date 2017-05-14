@@ -45,6 +45,16 @@ export class CourseComponent implements OnInit {
             })
     }
 
+    getStatus(deliverable) {
+        if(typeof(deliverable.mark) !== 'undefined' && deliverable.mark !== null){
+            return "Marked" 
+        }
+        if(deliverable.isComplete){
+            return "Completed" 
+        }
+        return "In process"
+    }
+
     getDisplayValue(value: number){
         if(typeof(value) === "undefined" || value == null){
             return '-'

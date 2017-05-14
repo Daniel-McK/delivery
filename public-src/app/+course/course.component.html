@@ -25,8 +25,14 @@
                             <div md-line>Mark: {{getDisplayValue(deliverable.mark)}}</div>
                             <div md-line>Weight: {{getDisplayValue(deliverable.weight)}}</div>
                         </div>
-                        <div>
-                            <md-checkbox>Complete</md-checkbox>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <div>{{getStatus(deliverable)}}</div>
+                            <button md-button md-icon-button>
+                                <md-icon>done</md-icon>
+                            </button>
+                            <button md-button md-icon-button>
+                                <md-icon>edit</md-icon>
+                            </button>
                         </div>
                     </div>
                 </div>
