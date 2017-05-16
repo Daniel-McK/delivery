@@ -22,4 +22,38 @@ deliverableRouter.route('')
         });
     });
 
+deliverableRouter.route('/:deliverableId')
+    .get(function (req, res) {
+        Deliverable.findById(req.params.deliverableId, function (err, deliverable) {
+            if (err) {
+                res.status(500).send(err);
+                return;
+            }
+            res.json(deliverable);
+            return;
+        });
+    })
+    .put(function(req, res){
+        Deliverable.findById(req.params.deliverableId, function (err, deliverable) {
+            if (err) {
+                res.status(500).send(err);
+                return;
+            }
+            deliverable.name = req.body.name;
+            deliverable.course = req.body.course;
+            deliverable.category = req.body.category;
+            deliverable.weight = req.body.weight;
+            deliverable.mark = req.body.mark;
+            deliverable.isComplete = req.body.isComplete;
+            deliverable.due = req.body.due;
+            deliverable.save(function (err) {
+                if (err) {
+                    res.status(500).send(err)
+                    return;
+                }
+                res.send(true);
+            });
+        });
+    });
+
 module.exports = deliverableRouter;

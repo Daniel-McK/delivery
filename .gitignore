@@ -2,3 +2,4 @@ node_modules/
 public-dist/js/
 public-dist/index.html
 config/db.js
+.vscode/launch.json
