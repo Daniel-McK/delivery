@@ -62,6 +62,10 @@ export class CourseComponent implements OnInit {
         return value + '%'
     }
 
+    canInputMark(deliverable){
+        return deliverable.isComplete && this.getDisplayValue(deliverable.mark) == '-'
+    }
+
     completeDeliverable(deliverable){
         deliverable.isComplete = true
         return this.saveDeliverable(deliverable)
