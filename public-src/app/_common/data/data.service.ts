@@ -47,6 +47,14 @@ export class DataService {
         })
     }
 
+    put(url: string, data) {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.put(url, data, {
+            headers: headers
+        })
+    }
+
     // internal methods
 
     private createAuthorizationHeader(headers: Headers) {

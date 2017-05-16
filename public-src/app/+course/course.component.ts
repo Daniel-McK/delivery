@@ -62,8 +62,17 @@ export class CourseComponent implements OnInit {
         return value + '%'
     }
 
+    completeDeliverable(deliverable){
+        deliverable.isComplete = true
+        return this.saveDeliverable(deliverable)
+            .subscribe()
+    }
+
+    private saveDeliverable (deliverable){
+        return this.dataService.put('/api/deliverable/' + deliverable._id, deliverable)
+    }
+
     private getCourse(courseId) {
-        console.log(courseId)
         this.dataService.get('/api/course/' + courseId)
             .subscribe(response => {
                 var body = response.json()
