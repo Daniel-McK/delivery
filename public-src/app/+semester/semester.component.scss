@@ -1,4 +1,30 @@
+.semester-details-wrapper {
+    max-width: 1000px;
+    width: 100%;
+    .details-card {
+        padding: 0;
+
+        .course-wrapper {
+            > .course {
+                cursor: pointer;
+                padding: 15px;
+                outline: none;
+            }
+            > .course:hover {
+                background-color: #EFEFEF;
+            }
+            > .course:not(:first-child) {
+                border-top: solid 1px #DDD;
+            }
+        }
+    }
+}
+
 #class-list-wrapper {
     max-width: 1000px;
     width: 100%;
+}
+
+.button-container {
+    margin-top: 15px;
 }

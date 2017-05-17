@@ -4,6 +4,15 @@
 
     .details-card {
         padding: 0;
+        
+        .deliverable-wrapper {
+            > .deliverable {
+                padding: 15px;
+            }
+            > .deliverable:not(:first-child) {
+                border-top: solid 1px #DDD;
+            }
+        }
     }
 
 }
@@ -20,12 +29,4 @@
 }
 .button-container {
     margin-top: 15px;
-}
-.deliverable-wrapper {
-    > .deliverable {
-        padding: 15px;
-    }
-    > .deliverable:not(:first-child) {
-        border-top: solid 1px #DDD;
-    }
 }
