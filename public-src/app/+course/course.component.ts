@@ -81,11 +81,10 @@ export class CourseComponent implements OnInit {
     completeDeliverable(deliverable){
         deliverable.isComplete = true
         return this.saveDeliverable(deliverable)
-            .subscribe()
     }
 
     private saveDeliverable (deliverable){
-        return this.dataService.put('/api/deliverable/' + deliverable._id, deliverable)
+        return this.dataService.put('/api/deliverable/' + deliverable._id, deliverable).subscribe()
     }
 
     private getCourse(courseId) {
