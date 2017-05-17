@@ -83,6 +83,22 @@ export class CourseComponent implements OnInit {
         return this.saveDeliverable(deliverable)
     }
 
+    getCompletionPercentage(){
+        if (this.course.deliverables.length === 0){
+            return 0
+        }
+        var sumWeight = 0
+        var sumDone = 0
+        this.course.deliverables.forEach(deliverable => {
+            sumWeight += deliverable.weight
+            if(deliverable.isComplete){
+                sumDone += deliverable.weight
+            }
+        });
+        return sumDone * 100 / sumWeight
+        
+    }
+
     private saveDeliverable (deliverable){
         return this.dataService.put('/api/deliverable/' + deliverable._id, deliverable).subscribe()
     }
