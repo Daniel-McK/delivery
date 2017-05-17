@@ -1,7 +1,7 @@
 <h1 md-dialog-title>Input Mark</h1>
 <div md-dialog-content>
     <md-input-container>
-        <input mdInput placeholder="Mark" [formControl]="markControl" type="number" >
+        <input mdInput placeholder="Mark" [formControl]="markControl" type="number" (keyup.enter)="updateMark()" />
     </md-input-container>
 </div>
 <div md-dialog-actions align="end">
