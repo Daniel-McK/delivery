@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { CommonModule, DecimalPipe } from '@angular/common'
 import { MaterialModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { ReactiveFormsModule } from '@angular/forms'
@@ -27,6 +27,8 @@ import { MarkInputDialog } from './dialogs/mark-input.dialog'
         DeliverableDialog, 
         MarkInputDialog
     ],
-    providers: []
+    providers: [
+        DecimalPipe
+    ]
 })
 export class CourseModule { }

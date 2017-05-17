@@ -8,7 +8,7 @@
                 <div fxFlex class="tile" id="complete" [fxHide]="completionPercentage === 100">
                     {{ completionPercentage | number : '1.0-2' }}% Done
                 </div>
-                <div fxFlex class="tile" id="grade">
+                <div fxFlex class="tile" id="grade" [mdTooltip]="getMarkedPercentage()" mdTooltipPosition="above">
                     {{ currentGrade | number : '1.0-1' }}% Current Grade
                 </div>
             </div>

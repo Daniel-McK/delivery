@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { DecimalPipe } from '@angular/common'
 import { ActivatedRoute } from '@angular/router'
 import { MdDialog } from '@angular/material'
 
@@ -14,7 +15,7 @@ import { MarkInputDialog } from './dialogs/mark-input.dialog'
 })
 export class CourseComponent implements OnInit {
 
-    constructor(private dataService: DataService, private router: ActivatedRoute, private dialog: MdDialog) {
+    constructor(private dataService: DataService, private router: ActivatedRoute, private dialog: MdDialog, private decimalPipe: DecimalPipe) {
         this.router.params.subscribe(params => {
             this.getCourse(params.courseId)
         })
@@ -47,6 +48,10 @@ export class CourseComponent implements OnInit {
                     this.course.deliverables.push(result)
                 }
             })
+    }
+
+    getMarkedPercentage(){
+        return this.decimalPipe.transform(this.percentMarked, '1.0-2') + '% of the course is marked'
     }
 
     getStatus(deliverable) {
