@@ -6,12 +6,12 @@
 </md-toolbar>
 <div fxLayout="column" fxLayoutAlign="center center">
     <div fxLayout="column" class="course-details-wrapper">
-        <md-card *ngIf="course" class="details-card">
+        <md-card *ngIf="course && course.deliverables.length !== 0" class="details-card">
             <div fxLayout="row">
-                <div fxFlex class="tile" id="complete" [fxHide]="completionPercentage === 100">
+                <div fxFlex class="tile" id="complete" [fxHide]="completionPercentage === 100 || completionPercentage === 0">
                     {{ completionPercentage | number : '1.0-2' }}% Done
                 </div>
-                <div fxFlex class="tile" id="grade" [mdTooltip]="getMarkedPercentage()" mdTooltipPosition="above">
+                <div fxFlex class="tile" id="grade" [mdTooltip]="getMarkedPercentage()" mdTooltipPosition="above" [fxHide]="currentGrade == -1">
                     {{ currentGrade | number : '1.0-1' }}% Current Grade
                 </div>
             </div>
@@ -44,6 +44,9 @@
                 </div>
             </div>
         </md-card>
+        <div *ngIf="course && course.deliverables.length === 0" class="no-deliverables-message">
+            Add your first deliverable for {{course.name}}
+        </div>
         <div fxLayout="row" fxLayoutAlign="center center" class="button-container">
             <a md-fab (click)="openDeliverableDialog()">
                 <md-icon>add</md-icon>
