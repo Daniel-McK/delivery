@@ -1,7 +1,7 @@
 <h1 md-dialog-title>New Course</h1>
 <div md-dialog-content>
     <md-input-container>
-        <input mdInput placeholder="Name" [formControl]="nameControl" >
+        <input mdInput placeholder="Name" [formControl]="nameControl" (keyup.enter)="createCourse()" />
     </md-input-container>
 </div>
 <div md-dialog-actions align="end">
