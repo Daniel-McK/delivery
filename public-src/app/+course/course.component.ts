@@ -46,6 +46,7 @@ export class CourseComponent implements OnInit {
             .subscribe(result => {
                 if (result) {
                     this.course.deliverables.push(result)
+                    this.updateCourseSummary()
                 }
             })
     }
@@ -91,7 +92,7 @@ export class CourseComponent implements OnInit {
         return this.saveDeliverable(deliverable)
     }
 
-    updateCompletionPercentage(){
+    updateCourseSummary(){
         if (this.course.deliverables.length === 0){
             this.completionPercentage = -1
             this.currentGrade = -1
@@ -123,7 +124,7 @@ export class CourseComponent implements OnInit {
     private saveDeliverable (deliverable){
         return this.dataService.put('/api/deliverable/' + deliverable._id, deliverable)
             .subscribe(() => {
-                this.updateCompletionPercentage()
+                this.updateCourseSummary()
             })
     }
 
@@ -133,7 +134,7 @@ export class CourseComponent implements OnInit {
                 var body = response.json()
                 if (body) {
                     this.course = body
-                    this.updateCompletionPercentage()
+                    this.updateCourseSummary()
                 }
             })
     }
