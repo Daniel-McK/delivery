@@ -1,4 +1,7 @@
 <md-toolbar color="primary">
+    <button md-button md-icon-button routerLink="/semester" mdTooltip="Semester">
+        <md-icon>arrow_upward</md-icon>
+    </button>
     <div *ngIf="course">{{course.name}}</div>
 </md-toolbar>
 <div fxLayout="column" fxLayoutAlign="center center">
@@ -30,7 +33,7 @@
                             <button md-button md-icon-button [fxHide]="deliverable.isComplete" (click)="completeDeliverable(deliverable)" mdTooltip="Complete">
                                 <md-icon>done</md-icon>
                             </button>
-                            <button md-button md-icon-button [fxShow]="canInputMark(deliverable)" (click)="beginInputMark(deliverable)" mdTooltip="Input Grade">
+                            <button md-button md-icon-button [fxShow]="canInputMark(deliverable)" (click)="beginInputMark(deliverable)" mdTooltip="Input mark">
                                 <md-icon>input</md-icon>
                             </button>
                             <!--<button md-button md-icon-button mdTooltip="Edit Deliverable">
