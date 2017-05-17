@@ -1,0 +1,9 @@
+<h1 md-dialog-title>Input Mark</h1>
+<div md-dialog-content>
+    <md-input-container>
+        <input mdInput placeholder="Mark" [formControl]="markControl" type="number" >
+    </md-input-container>
+</div>
+<div md-dialog-actions align="end">
+  <button md-raised-button (click)="updateMark()" [disabled]="!markControl.valid">Ok</button>
+</div>

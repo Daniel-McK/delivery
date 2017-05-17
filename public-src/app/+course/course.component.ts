@@ -4,6 +4,7 @@ import { MdDialog } from '@angular/material'
 
 import { DataService } from '../_common/data'
 import { DeliverableDialog } from './dialogs/deliverable.dialog'
+import { MarkInputDialog } from './dialogs/mark-input.dialog'
 
 
 @Component({
@@ -64,6 +65,17 @@ export class CourseComponent implements OnInit {
 
     canInputMark(deliverable){
         return deliverable.isComplete && this.getDisplayValue(deliverable.mark) == '-'
+    }
+
+    beginInputMark(deliverable){
+        var dialogRef = this.dialog.open(MarkInputDialog)
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (!isNaN(result)) {
+                    deliverable.mark = result
+                    this.saveDeliverable(deliverable)
+                }
+            })
     }
 
     completeDeliverable(deliverable){

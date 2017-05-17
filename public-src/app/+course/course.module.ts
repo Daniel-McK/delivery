@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { CourseRoutingModule } from './course.routing'
 import { CourseComponent } from './course.component'
 import { DeliverableDialog } from './dialogs/deliverable.dialog'
+import { MarkInputDialog } from './dialogs/mark-input.dialog'
 
 @NgModule({
     imports: [
@@ -19,10 +20,12 @@ import { DeliverableDialog } from './dialogs/deliverable.dialog'
     exports: [],
     declarations: [
         CourseComponent,
-        DeliverableDialog
+        DeliverableDialog,
+        MarkInputDialog
     ],
     entryComponents: [
-        DeliverableDialog
+        DeliverableDialog, 
+        MarkInputDialog
     ],
     providers: []
 })
