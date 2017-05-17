@@ -5,7 +5,11 @@
     <div fxLayout="column" class="semester-details-wrapper">
          <md-card *ngIf="semester" class="details-card">
             <div fxLayout="column" class="course-wrapper">
-                <div class="course" *ngFor="let course of semester.courses" [routerLink]="['/course/' + course._id]">{{course.name}}</div>
+                <div class="course" *ngFor="let course of semester.courses" [routerLink]="['/course/' + course._id]" fxLayout="row">
+                    <div fxFlex>{{course.name}}</div>
+                    <div *ngIf="course.mark">{{course.mark | number : '1.0-1'}}%</div>
+                    <div *ngIf="!course.mark">-</div>
+                </div>
             </div>
         </md-card>
         <div fxLayout="row" fxLayoutAlign="center center" class="button-container">
