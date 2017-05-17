@@ -15,7 +15,7 @@
             <div fxLayout="column" class="deliverable-wrapper">
                 <div *ngFor="let deliverable of course.deliverables" class="deliverable">
                     <div fxLayout="row" fxFlex fxLayoutAlign="start center">
-                        <div fxFlex>
+                        <div fxFlex fxFlex.gt-xs="40">
                             <div md-line>{{deliverable.name}}</div>
                             <div md-line>{{deliverable.due | date}}</div>
                             <div md-line fxHide="false" fxHide.gt-xs>Mark: {{getDisplayValue(deliverable.mark)}}</div>

@@ -23,7 +23,6 @@ export class CourseComponent implements OnInit {
                 var body = response.json()
                 if(body){
                     this.categories = body;
-                    console.log(this.categories)
                 }
             });
     }
@@ -102,7 +101,6 @@ export class CourseComponent implements OnInit {
                 sumDone += deliverable.weight
             }
             if(typeof(deliverable.mark) === 'number'){
-                console.log('(' + deliverable.mark + ' / 100) * ' + deliverable.weight)
                 sumMarked += deliverable.weight
                 sumGrades += (deliverable.mark / 100) * deliverable.weight
             }
