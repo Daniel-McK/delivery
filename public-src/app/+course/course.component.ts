@@ -28,6 +28,8 @@ export class CourseComponent implements OnInit {
             });
     }
 
+    completionPercentage = -1
+
     categories: Array<any>
 
     course: any
@@ -83,9 +85,9 @@ export class CourseComponent implements OnInit {
         return this.saveDeliverable(deliverable)
     }
 
-    getCompletionPercentage(){
+    updateCompletionPercentage(){
         if (this.course.deliverables.length === 0){
-            return 0
+            this.completionPercentage = -1
         }
         var sumWeight = 0
         var sumDone = 0
@@ -95,12 +97,14 @@ export class CourseComponent implements OnInit {
                 sumDone += deliverable.weight
             }
         });
-        return sumDone * 100 / sumWeight
-        
+        this.completionPercentage = sumDone * 100 / sumWeight
     }
 
     private saveDeliverable (deliverable){
-        return this.dataService.put('/api/deliverable/' + deliverable._id, deliverable).subscribe()
+        return this.dataService.put('/api/deliverable/' + deliverable._id, deliverable)
+            .subscribe(() => {
+                this.updateCompletionPercentage()
+            })
     }
 
     private getCourse(courseId) {
@@ -109,6 +113,7 @@ export class CourseComponent implements OnInit {
                 var body = response.json()
                 if (body) {
                     this.course = body
+                    this.updateCompletionPercentage()
                 }
             })
     }
