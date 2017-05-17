@@ -29,6 +29,8 @@ export class CourseComponent implements OnInit {
     }
 
     completionPercentage = -1
+    currentGrade = -1
+    percentMarked = -1
 
     categories: Array<any>
 
@@ -73,7 +75,7 @@ export class CourseComponent implements OnInit {
         var dialogRef = this.dialog.open(MarkInputDialog)
         dialogRef.afterClosed()
             .subscribe(result => {
-                if (!isNaN(result)) {
+                if (typeof(result) === 'number') {
                     deliverable.mark = result
                     this.saveDeliverable(deliverable)
                 }
@@ -88,16 +90,31 @@ export class CourseComponent implements OnInit {
     updateCompletionPercentage(){
         if (this.course.deliverables.length === 0){
             this.completionPercentage = -1
+            this.currentGrade = -1
         }
         var sumWeight = 0
         var sumDone = 0
+        var sumMarked = 0
+        var sumGrades = 0
         this.course.deliverables.forEach(deliverable => {
             sumWeight += deliverable.weight
             if(deliverable.isComplete){
                 sumDone += deliverable.weight
             }
+            if(typeof(deliverable.mark) === 'number'){
+                console.log('(' + deliverable.mark + ' / 100) * ' + deliverable.weight)
+                sumMarked += deliverable.weight
+                sumGrades += (deliverable.mark / 100) * deliverable.weight
+            }
         });
         this.completionPercentage = sumDone * 100 / sumWeight
+        this.percentMarked = sumMarked * 100 / sumWeight
+        if(sumMarked == 0){
+            this.currentGrade = -1;
+        }
+        else {
+            this.currentGrade = sumGrades * 100 / sumMarked
+        }
     }
 
     private saveDeliverable (deliverable){
