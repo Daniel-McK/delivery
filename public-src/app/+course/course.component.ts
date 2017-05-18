@@ -92,6 +92,12 @@ export class CourseComponent implements OnInit {
         return this.saveDeliverable(deliverable)
     }
 
+    reset(deliverable) {
+        deliverable.isComplete = false
+        deliverable.mark = null
+        this.saveDeliverable(deliverable)
+    }
+
     updateCourseSummary(){
         if (this.course.deliverables.length === 0){
             this.completionPercentage = -1
