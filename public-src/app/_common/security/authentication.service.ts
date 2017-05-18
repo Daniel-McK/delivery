@@ -22,7 +22,7 @@ export class AuthenticationService {
                     console.log('[AuthService]: Token verification Succesful, updating login state')
                 }
                 else {
-                    this.router.navigateByUrl('/login')
+                    this.router.navigateByUrl('/register')
                     console.log('[AuthService]: Token verification failed, redirecting to login')
                 }
                 return body
