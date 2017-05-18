@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     })
     if (this.authService.state.status == AuthenticationStatus.Authenticated) {
-      this.router.navigateByUrl('/home')
+      this.router.navigateByUrl('/semester')
     }
   }
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(value.email, value.password)
       .subscribe(body => {
         if(body.success){
-          this.router.navigateByUrl('/home')
+          this.router.navigateByUrl('/semester')
           return
         }
         this.serverError = "Invalid email/password combination."
