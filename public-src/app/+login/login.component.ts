@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { AuthenticationService, AuthenticationStatus } from '../_common/security'
+import { AuthenticationService } from '../_common/security'
 import { Router } from '@angular/router'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     })
-    if (this.authService.state.status == AuthenticationStatus.Authenticated) {
+    if (this.authService.state.isLoggedIn()) {
       this.router.navigateByUrl('/semester')
     }
   }
