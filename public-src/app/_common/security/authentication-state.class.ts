@@ -20,4 +20,8 @@ export class AuthenticationState {
         this.status = AuthenticationStatus.Unauthenticated
     }
 
+    isLoggedIn(){
+        return this.status === AuthenticationStatus.Authenticated
+    }
+
 }

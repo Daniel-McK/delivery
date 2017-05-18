@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app.routing'
 import { AppComponent } from './app.component'
 import { HomeModule } from './home/home.module'
 import { DataService } from './_common/data/data.service'
-import { AuthenticationService } from './_common/security'
+import { AuthenticationService, CanActivateAuthGuard } from './_common/security'
 
 @NgModule({
     imports: [
@@ -40,7 +40,8 @@ import { AuthenticationService } from './_common/security'
     ],
     providers: [
         DataService,
-        AuthenticationService
+        AuthenticationService,
+        CanActivateAuthGuard
     ]
 })
 export class MainModule { }
