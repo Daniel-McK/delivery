@@ -10,7 +10,6 @@ import { CommonModule} from '@angular/common'
 
 import { AppRoutingModule } from './app.routing'
 import { AppComponent } from './app.component'
-import { HomeModule } from './home/home.module'
 import { DataService } from './_common/data/data.service'
 import { AuthenticationService, CanActivateAuthGuard } from './_common/security'
 
@@ -29,8 +28,7 @@ import { AuthenticationService, CanActivateAuthGuard } from './_common/security'
             storageType: 'localStorage'
         }),
 
-        AppRoutingModule,
-        HomeModule
+        AppRoutingModule
     ],
     declarations: [
         AppComponent

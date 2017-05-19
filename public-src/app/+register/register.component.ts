@@ -3,13 +3,15 @@ import { AuthenticationService } from '../_common/security'
 import { Router } from '@angular/router'
  
 @Component({
-    selector: 'home',
-    templateUrl: './home.component.html'
+    selector: 'register',
+    templateUrl: './register.component.html'
 })
-export class HomeComponent implements OnInit {
+export class RegisterComponent implements OnInit {
     constructor(private authService: AuthenticationService, private router: Router) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        console.log('test')
+    }
 
     logout() {
         this.authService.logout()
