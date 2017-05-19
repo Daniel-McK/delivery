@@ -10,7 +10,9 @@ export class RegisterComponent implements OnInit {
     constructor(private authService: AuthenticationService, private router: Router) { }
 
     ngOnInit() { 
-        console.log('test')
+        if (this.authService.state.isLoggedIn()) {
+            this.router.navigateByUrl('/semester')
+        }
     }
 
     logout() {
