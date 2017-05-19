@@ -8,7 +8,7 @@
     <div fxLayout="column" class="course-details-wrapper">
         <md-card *ngIf="course && course.deliverables.length !== 0" class="details-card">
             <div fxLayout="row">
-                <div fxFlex class="tile" id="complete" [fxHide]="completionPercentage === 100 || completionPercentage === 0">
+                <div fxFlex class="tile" id="complete" [fxHide]="completionPercentage === 100 || completionPercentage <= 0">
                     {{ completionPercentage | number : '1.0-1' }}% Done
                 </div>
                 <div fxFlex class="tile" id="grade" [mdTooltip]="getMarkedPercentage()" mdTooltipPosition="above" [fxHide]="currentGrade == -1">

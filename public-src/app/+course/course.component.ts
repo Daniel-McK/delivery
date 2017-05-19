@@ -102,6 +102,8 @@ export class CourseComponent implements OnInit {
         if (this.course.deliverables.length === 0){
             this.completionPercentage = -1
             this.currentGrade = -1
+            this.percentMarked = -1;
+            return;
         }
         var sumWeight = 0
         var sumDone = 0
@@ -117,6 +119,11 @@ export class CourseComponent implements OnInit {
                 sumGrades += (deliverable.mark / 100) * deliverable.weight
             }
         });
+        if(sumWeight == 0){
+            this.completionPercentage = -1;
+            this.percentMarked = -1;
+            return;
+        }
         this.completionPercentage = sumDone * 100 / sumWeight
         this.percentMarked = sumMarked * 100 / sumWeight
         if(sumMarked == 0){
