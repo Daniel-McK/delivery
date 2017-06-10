@@ -1,0 +1,35 @@
+#register-bg{
+    background: url(./imgs/register-background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+
+    md-card#register-card{
+        width: 300px;
+        top: 50px;
+        left: calc(50% - 174px);
+
+        md-input-container {
+            width: 100%;
+        }
+
+    }
+
+    .login-link {
+        color: white;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 10px;
+        font-size: 1.1rem;
+
+        > a {
+            color: white;
+        }
+    }
+
+}
+

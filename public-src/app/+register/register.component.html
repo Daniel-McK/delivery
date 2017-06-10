@@ -1,4 +1,27 @@
-Home
-<a [routerLink]="['/login']">Login</a>
-<a [routerLink]="['/semester']">Semester</a>     
-<a (click)="logout()">Logout</a>     
+<form id="register-bg" [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+    <div class="login-link">
+        Already a member? <a [routerLink]="['/login']">Login</a>
+    </div>
+    <md-card id="register-card">
+        <md-card-header>
+            <md-card-title>Register for Delivery</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <md-input-container>
+                <input formControlName="email" placeholder="Email" mdInput />
+            </md-input-container>
+            <md-input-container>
+                <input formControlName="password" placeholder="Password" type="password" mdInput />
+            </md-input-container>
+            <md-input-container>
+                <input formControlName="confirmPassword" placeholder="Confirm Password" type="password" mdInput />
+            </md-input-container>
+            <p *ngIf="hasError()" class="error-text">
+                The passwords do not match.
+            </p>
+        </md-card-content>
+        <md-card-actions align="end">
+            <button md-raised-button type="submit" [disabled]="registerForm.invalid">Register</button>
+        </md-card-actions>
+    </md-card>
+</form>
