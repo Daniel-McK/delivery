@@ -4,7 +4,7 @@ import { MaterialModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { ReactiveFormsModule } from '@angular/forms'
 
-import { SettingsButtonComponent } from '../_core/settings-button/settings-button.component'
+import { SharedModule } from '../_shared'
 
 import { SemseterRoutingModule } from './semester.routing'
 import { SemesterComponent } from './semester.component'
@@ -17,14 +17,14 @@ import { CourseDialog } from './dialogs/course.dialog'
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [],
   declarations: [
     SemesterComponent,
     SemesterDialog,
-    CourseDialog,
-    SettingsButtonComponent
+    CourseDialog
   ],
   entryComponents: [
     SemesterDialog,

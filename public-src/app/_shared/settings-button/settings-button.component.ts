@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { AuthenticationService } from '../security'
+import { AuthenticationService } from '../../_core/security'
 
 @Component({
     selector: 'settings-button',
