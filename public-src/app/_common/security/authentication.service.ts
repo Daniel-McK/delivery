@@ -43,6 +43,7 @@ export class AuthenticationService {
     logout() {
         this.dataService.logout()
         this.state.reset()
+        this.router.navigateByUrl('/register')
     }
 
     getCurrentUserId() {

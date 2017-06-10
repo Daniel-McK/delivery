@@ -1,0 +1,9 @@
+<button md-icon-button [mdMenuTriggerFor]="menu">
+  <md-icon>person</md-icon>
+</button>
+<md-menu #menu="mdMenu">
+    <button md-menu-item (click)="logout()">
+        <md-icon>notifications_off</md-icon>
+        <span>Logout</span>
+    </button>
+</md-menu>

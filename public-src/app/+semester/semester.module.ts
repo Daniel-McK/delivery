@@ -4,6 +4,8 @@ import { MaterialModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { ReactiveFormsModule } from '@angular/forms'
 
+import { SettingsButtonComponent } from '../_common/settings-button/settings-button.component'
+
 import { SemseterRoutingModule } from './semester.routing'
 import { SemesterComponent } from './semester.component'
 import { SemesterDialog } from './dialogs/semester.dialog'
@@ -21,7 +23,8 @@ import { CourseDialog } from './dialogs/course.dialog'
   declarations: [
     SemesterComponent,
     SemesterDialog,
-    CourseDialog
+    CourseDialog,
+    SettingsButtonComponent
   ],
   entryComponents: [
     SemesterDialog,
