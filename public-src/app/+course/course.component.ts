@@ -3,7 +3,7 @@ import { DecimalPipe } from '@angular/common'
 import { ActivatedRoute } from '@angular/router'
 import { MdDialog } from '@angular/material'
 
-import { DataService } from '../_common/data'
+import { DataService } from '../_core/data'
 import { DeliverableDialog } from './dialogs/deliverable.dialog'
 import { MarkInputDialog } from './dialogs/mark-input.dialog'
 

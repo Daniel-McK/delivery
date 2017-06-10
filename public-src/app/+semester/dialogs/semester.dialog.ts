@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { MdDialogRef } from '@angular/material'
 import { FormControl, Validators } from '@angular/forms'
 
-import { DataService } from '../../_common/data'
+import { DataService } from '../../_core/data'
 
 
 @Component({

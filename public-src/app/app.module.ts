@@ -10,8 +10,8 @@ import { CommonModule} from '@angular/common'
 
 import { AppRoutingModule } from './app.routing'
 import { AppComponent } from './app.component'
-import { DataService } from './_common/data/data.service'
-import { AuthenticationService, CanActivateAuthGuard } from './_common/security'
+import { DataService } from './_core/data'
+import { AuthenticationService, CanActivateAuthGuard } from './_core/security'
 
 @NgModule({
     imports: [

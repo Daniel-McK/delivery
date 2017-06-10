@@ -4,7 +4,7 @@ import { MaterialModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { ReactiveFormsModule } from '@angular/forms'
 
-import { SettingsButtonComponent } from '../_common/settings-button/settings-button.component'
+import { SettingsButtonComponent } from '../_core/settings-button/settings-button.component'
 
 import { SemseterRoutingModule } from './semester.routing'
 import { SemesterComponent } from './semester.component'

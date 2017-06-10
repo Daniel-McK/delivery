@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { URLSearchParams } from '@angular/http'
 import { MdDialog } from '@angular/material'
 
-import { DataService } from '../_common/data'
-import { AuthenticationService } from '../_common/security'
+import { DataService } from '../_core/data'
+import { AuthenticationService } from '../_core/security'
 import { SemesterDialog } from './dialogs/semester.dialog'
 import { CourseDialog } from './dialogs/course.dialog'
 

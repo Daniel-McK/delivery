@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 
-import { CanActivateAuthGuard } from './_common/security'
+import { CanActivateAuthGuard } from './_core/security'
 
 const routes: Routes = [
     { path: '', redirectTo: '/semester', pathMatch: 'full' },
