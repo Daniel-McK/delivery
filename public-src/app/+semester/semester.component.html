@@ -15,6 +15,9 @@
                 </div>
             </div>
         </md-card>
+        <div *ngIf="semester && semester.courses.length === 0" class="no-courses-message">
+            Add your first course for {{semester.name}}
+        </div>
         <div fxLayout="row" fxLayoutAlign="center center" class="button-container">
             <a md-fab (click)="openCourseDialog()">
                 <md-icon>add</md-icon>

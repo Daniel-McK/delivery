@@ -26,8 +26,9 @@ export class SemesterDialog implements OnInit {
     }
     this.dataService.post('/api/semester', postBody)
       .subscribe(response => {
-        var body = response.json()
-        this.dialogRef.close(body)
+        var semester = response.json()
+        semester.courses = []
+        this.dialogRef.close(semester)
       })
   }
 
