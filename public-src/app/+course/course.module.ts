@@ -4,6 +4,8 @@ import { MaterialModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { ReactiveFormsModule } from '@angular/forms'
 
+import { SharedModule } from '../_shared'
+
 import { CourseRoutingModule } from './course.routing'
 import { CourseComponent } from './course.component'
 import { DeliverableDialog } from './dialogs/deliverable.dialog'
@@ -15,7 +17,8 @@ import { MarkInputDialog } from './dialogs/mark-input.dialog'
         MaterialModule,
         FlexLayoutModule,
         ReactiveFormsModule,
-        CommonModule
+        CommonModule,
+        SharedModule
     ],
     exports: [],
     declarations: [
@@ -24,7 +27,7 @@ import { MarkInputDialog } from './dialogs/mark-input.dialog'
         MarkInputDialog
     ],
     entryComponents: [
-        DeliverableDialog, 
+        DeliverableDialog,
         MarkInputDialog
     ],
     providers: [

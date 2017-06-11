@@ -1,8 +1,11 @@
 <md-toolbar color="primary">
-    <button md-button md-icon-button routerLink="/semester" mdTooltip="Semester">
-        <md-icon>arrow_upward</md-icon>
-    </button>
-    <div *ngIf="course">{{course.name}}</div>
+    <md-toolbar-row fxLayout="row">
+        <button md-button md-icon-button routerLink="/semester" mdTooltip="Semester">
+            <md-icon>arrow_upward</md-icon>
+        </button>
+        <div *ngIf="course" fxFlex>{{course.name}}</div>
+        <settings-button></settings-button>
+    </md-toolbar-row>
 </md-toolbar>
 <div fxLayout="column" fxLayoutAlign="center center">
     <div fxLayout="column" class="course-details-wrapper">
