@@ -31,12 +31,14 @@ export class LoginComponent implements OnInit {
     if(!valid){
       return
     }
+    this.loginForm.disable();
     this.authService.login(value.email, value.password)
       .subscribe(body => {
         if(body.success){
           this.router.navigateByUrl('/semester')
           return
         }
+        this.loginForm.enable()
         this.serverError = "Invalid email/password combination."
       })
   }

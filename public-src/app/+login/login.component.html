@@ -15,7 +15,7 @@
             </p>
         </md-card-content>
         <md-card-actions align="end">
-            <button md-raised-button type="submit" [disabled]="loginForm.invalid">Login</button>
+            <button md-raised-button type="submit" [disabled]="loginForm.invalid || loginForm.disabled">Login</button>
         </md-card-actions>
     </md-card>
 </form>

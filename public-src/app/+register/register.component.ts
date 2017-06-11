@@ -33,12 +33,14 @@ export class RegisterComponent implements OnInit {
         if (!valid) {
             return
         }
+        this.registerForm.disable()
         this.authService.register(value.firstName, value.lastName, value.email, value.password)
             .subscribe(body => {
                 if (body.success) {
                     this.router.navigateByUrl('/semester')
                     return
                 }
+                this.registerForm.enable()
                 this.serverError = "Registration failed."
             })
     }
