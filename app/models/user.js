@@ -5,5 +5,6 @@ module.exports = mongoose.model('User', {
     lastName: {type : String, default: ''},
     email: {type: String, default: ''},
     password: {type: String, default: ''},
-    admin: {type: Boolean, default: false}
+    admin: {type: Boolean, default: false},
+    validated: {type: Boolean, default: false}
 });

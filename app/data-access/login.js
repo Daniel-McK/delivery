@@ -55,6 +55,55 @@ loginRouter.route('/login')
         });
     });
 
+
+loginRouter.route('/register')
+    .post(function (req, res) {
+        var email = req.body.email;
+        var password = req.body.password;
+        if (typeof (email) == 'undefined' || email == null || typeof (password) == 'undefined' || password == null) {
+            res.status(400).send({ error: 'Registering requires email and password to be in the body of the POST.' });
+            return;
+        }
+
+        var user = new User();
+        user.email = email;
+        user.password = bcrypt.hashSync(password);
+        user.firstName = req.body.firstName;
+        user.lastName = req.body.lastName;
+        user.validated = false;
+        user.admin = false;
+
+        user.save(function (err) {
+            if (err) {
+                res.json({ success: false, message: 'Failed to register new user.' });
+                return;
+            }
+
+            var cleanUser = {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                _id: user._id,
+                admin: user.admin
+            };
+
+            var maxAgeInSeconds = 24 * 60 * 60 * 7;
+
+            var token = jwt.sign(cleanUser, db.secret, {
+                expiresIn: maxAgeInSeconds
+            });
+
+            res.json({
+                success: true,
+                message: "Registration was successful.",
+                token: token,
+                user: cleanUser
+            });
+        });
+
+
+    });
+
 loginRouter.route('/verify-token')
     .get(function (req, res) {
         var token = req.headers['token'];

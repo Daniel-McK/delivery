@@ -31,16 +31,15 @@ export class SemesterComponent implements OnInit {
     params.set('userId', this.authService.getCurrentUserId())
     // @TODO add url param for specific semester
     this.dataService.get('/api/semester/default', params)
-      .map(response => {
+      .subscribe(response => {
+        console.log(response)
         var body = response.json()
-        if (!body) {
+        this.semester = body
+      }, err => {
+        if (err.status === 404) {
           this.openSemesterDialog()
         }
-        else {
-          this.semester = body
-        }
       })
-      .subscribe()
 
   }
 

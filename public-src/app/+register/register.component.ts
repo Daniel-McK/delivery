@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
             email: ['', Validators.required],
             password: ['', Validators.required],
             confirmPassword: ['', Validators.required]
@@ -27,17 +29,24 @@ export class RegisterComponent implements OnInit {
 
     serverError: string
 
-    register({ valid }: { valid: boolean }) {
+    register({ value, valid }: { value: any, valid: boolean }) {
         if (!valid) {
             return
         }
-        console.log('register');
+        this.authService.register(value.firstName, value.lastName, value.email, value.password)
+            .subscribe(body => {
+                if (body.success) {
+                    this.router.navigateByUrl('/semester')
+                    return
+                }
+                this.serverError = "Registration failed."
+            })
     }
 
     hasError(): boolean {
-        var hasValue =typeof(this.registerForm.value.password) != 'undefined'
+        var hasValue = typeof (this.registerForm.value.password) != 'undefined'
             && this.registerForm.value.password != null
             && this.registerForm.value.password != ''
-        return  hasValue && this.registerForm.value.password !== this.registerForm.value.confirmPassword
+        return hasValue && this.registerForm.value.password !== this.registerForm.value.confirmPassword
     }
 }

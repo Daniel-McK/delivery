@@ -22,6 +22,23 @@ export class DataService {
             })
     }
 
+    register(firstName: string, lastName: string, email: string, password: string) {
+        var loginData = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password
+        }
+        return this.post('/api/authentication/register', loginData)
+            .map(response => {
+                var body = response.json()
+                if (body.success) {
+                    this.localStorage.set('token', body.token)
+                }
+                return body
+            })
+    }
+
     verifyToken(){
         return this.get('/api/authentication/verify-token')
     }

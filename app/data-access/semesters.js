@@ -6,6 +6,21 @@ var Deliverable = require('../models/deliverable');
 
 var semesterRouter = new express.Router();
 
+semesterRouter.route('')
+    .post(function (req, res) {
+        var semester = new Semester();
+        semester.name = req.body.name;
+        semester.isCurrent = req.body.isCurrent;
+        semester.user = req.decoded._id;
+        semester.save(function (err) {
+            if (err) {
+                res.status(500).send(err);
+                return;
+            }
+            res.json(semester);
+        });
+    });
+
 semesterRouter.route('/default')
     .get(function (req, res) {
         var searchParams = {};
@@ -23,38 +38,29 @@ semesterRouter.route('/default')
                 res.status(500).send(err);
                 return;
             }
+            if (!semester) {
+                res.status(404).send("No semester exists for this user.");
+                return;
+            }
             Course.find({ semester: semester._id }).lean().exec(function (err, courses) {
                 if (err) {
                     res.status(500).send(err);
                     return;
                 }
                 semester.courses = courses;
-                
+
                 var summaryPromises = [];
-                semester.courses.forEach(function(course){
+                semester.courses.forEach(function (course) {
                     summaryPromises.push(addCourseSummary(course));
                 })
 
                 q.all(summaryPromises)
-                    .then(function(){
+                    .then(function () {
                         res.json(semester)
                     });
             });
         });
     })
-    .post(function (req, res) {
-        var semester = new Semester();
-        semester.name = req.body.name;
-        semester.isCurrent = req.body.isCurrent;
-        semester.user = req.decoded._id;
-        semester.save(function (err) {
-            if (err) {
-                res.status(500).send(err);
-                return;
-            }
-            res.json(semester);
-        });
-    });
 
 semesterRouter.route('/:semesterId')
     .get(function (req, res) {
@@ -72,7 +78,7 @@ module.exports = semesterRouter;
 
 // helpers
 
-function addCourseSummary(course){
+function addCourseSummary(course) {
 
     var deferred = q.defer();
 
@@ -84,14 +90,14 @@ function addCourseSummary(course){
         var marked = 0;
         var grade = 0;
 
-        for(var i = 0; i < deliverables.length; i++){
+        for (var i = 0; i < deliverables.length; i++) {
             var deliverable = deliverables[i];
-            if(typeof(deliverable.mark) == "number"){
+            if (typeof (deliverable.mark) == "number") {
                 marked += deliverable.weight;
                 grade += deliverable.mark / 100 * deliverable.weight;
             }
         }
-        if(marked == 0){
+        if (marked == 0) {
             deferred.resolve();
             return;
         }
