@@ -32,26 +32,8 @@ loginRouter.route('/login')
                 return;
             }
 
-            var cleanUser = {
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                _id: user._id,
-                admin: user.admin
-            };
-
-            var maxAgeInSeconds = 24 * 60 * 60 * 7;
-
-            var token = jwt.sign(cleanUser, db.secret, {
-                expiresIn: maxAgeInSeconds
-            });
-
-            res.json({
-                success: true,
-                message: "Login was successful.",
-                token: token,
-                user: cleanUser
-            });
+            var loginResponse = buildLoginResponse(user, "Login was successful.");
+            res.json(loginResponse);
         });
     });
 
@@ -79,26 +61,8 @@ loginRouter.route('/register')
                 return;
             }
 
-            var cleanUser = {
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                _id: user._id,
-                admin: user.admin
-            };
-
-            var maxAgeInSeconds = 24 * 60 * 60 * 7;
-
-            var token = jwt.sign(cleanUser, db.secret, {
-                expiresIn: maxAgeInSeconds
-            });
-
-            res.json({
-                success: true,
-                message: "Registration was successful.",
-                token: token,
-                user: cleanUser
-            });
+            var loginResponse = buildLoginResponse(user, "Registration was successful");
+            res.json(loginResponse);
         });
 
 
@@ -126,4 +90,27 @@ loginRouter.route('/verify-token')
     });
 
 module.exports = loginRouter;
+
+function buildLoginResponse(user, message) {
+    var cleanUser = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        _id: user._id,
+        admin: user.admin
+    };
+
+    var maxAgeInSeconds = 24 * 60 * 60 * 7;
+
+    var token = jwt.sign(cleanUser, db.secret, {
+        expiresIn: maxAgeInSeconds
+    });
+
+    return {
+        success: true,
+        message: message,
+        token: token,
+        user: cleanUser
+    };
+}
 
