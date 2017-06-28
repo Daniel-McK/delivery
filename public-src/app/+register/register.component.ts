@@ -16,10 +16,10 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
             confirmPassword: ['', Validators.required]
-        })
+        }, { validator: this.matchingPasswords})
         if (this.authService.state.isLoggedIn()) {
             this.router.navigateByUrl('/semester')
         }
@@ -45,10 +45,11 @@ export class RegisterComponent implements OnInit {
             })
     }
 
-    hasError(): boolean {
-        var hasValue = typeof (this.registerForm.value.password) != 'undefined'
-            && this.registerForm.value.password != null
-            && this.registerForm.value.password != ''
-        return hasValue && this.registerForm.value.password !== this.registerForm.value.confirmPassword
+    matchingPasswords(form: FormGroup) {
+        if (form.value.password !== form.value.confirmPassword) {
+            return {
+                passwordMismatch: true
+            }
+        }
     }
 }

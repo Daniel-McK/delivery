@@ -14,7 +14,7 @@
                 <input formControlName="lastName" placeholder="Last Name" mdInput />
             </md-input-container>
             <md-input-container>
-                <input formControlName="email" placeholder="Email" mdInput />
+                <input formControlName="email" placeholder="Email" type="email" mdInput />
             </md-input-container>
             <md-input-container>
                 <input formControlName="password" placeholder="Password" type="password" mdInput />
@@ -22,12 +22,12 @@
             <md-input-container>
                 <input formControlName="confirmPassword" placeholder="Confirm Password" type="password" mdInput />
             </md-input-container>
-            <p *ngIf="hasError()" class="error-text">
+            <p *ngIf="registerForm.hasError('passwordMismatch') && registerForm.controls.password.touched && registerForm.controls.confirmPassword.touched" class="error-text">
                 The passwords do not match.
             </p>
         </md-card-content>
         <md-card-actions align="end">
-            <button md-raised-button type="submit" [disabled]="registerForm.invalid || regsiterForm.disabled">Register</button>
+            <button md-raised-button type="submit" [disabled]="registerForm.invalid || registerForm.disabled">Register</button>
         </md-card-actions>
     </md-card>
 </form>
